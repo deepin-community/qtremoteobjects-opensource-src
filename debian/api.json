@@ -1,0 +1,2 @@
+{"Filepath":"include/QtRemoteObjects/qtremoteobjectsversion.h","Functions":null,"Records":[{"Name":"macro","Fields":["QTREMOTEOBJECTS_VERSION","QTREMOTEOBJECTS_VERSION_STR","QT_QTREMOTEOBJECTS_VERSION_H"]}]}
+{"Filepath":"include/QtRepParser/qtrepparserversion.h","Functions":null,"Records":[{"Name":"macro","Fields":["QTREPPARSER_VERSION","QTREPPARSER_VERSION_STR","QT_QTREPPARSER_VERSION_H"]}]}
