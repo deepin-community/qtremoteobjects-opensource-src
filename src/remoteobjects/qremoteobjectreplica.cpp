@@ -345,8 +345,11 @@ bool QConnectedReplicaImplementation::waitForSource(int timeout)
                          &loop, QEventLoop::staticMetaObject.indexOfMethod("quit()"),
                          Qt::DirectConnection, nullptr);
 
+    QTimer t; // NB: Related to QTBUG-94570 - don't use QTimer::singleShot here.
     if (timeout >= 0) {
-        QTimer::singleShot(timeout, &loop, SLOT(quit()));
+        t.setSingleShot(true);
+        connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
+        t.start(timeout);
     }
 
     // enter the event loop and wait for a reply
@@ -437,8 +440,15 @@ bool QConnectedReplicaImplementation::waitForFinished(const QRemoteObjectPending
     call.d->mutex.unlock();
 
     QEventLoop loop;
-    loop.connect(call.d->watcherHelper.data(), SIGNAL(finished()), SLOT(quit()));
-    QTimer::singleShot(timeout, &loop, SLOT(quit()));
+    loop.connect(call.d->watcherHelper.data(), &QRemoteObjectPendingCallWatcherHelper::finished,
+                 &loop, &QEventLoop::quit);
+
+    QTimer t; // NB: Related to QTBUG-94570 - don't use QTimer::singleShot here.
+    if (timeout >= 0) {
+        t.setSingleShot(true);
+        connect(&t, &QTimer::timeout, &loop, &QEventLoop::quit);
+        t.start(timeout);
+    }
 
     // enter the event loop and wait for a reply
     loop.exec(QEventLoop::ExcludeUserInputEvents | QEventLoop::WaitForMoreEvents);

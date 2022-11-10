@@ -8,7 +8,7 @@ License: LGPL-3 or GPL-2
 
 Files: debian/*
 Copyright: 2019 Alexander Volkov <avolkov@astralinux.ru>
-           2019-2020 Dmitry Shachnev <mitya57@debian.org>
+           2019-2022 Dmitry Shachnev <mitya57@debian.org>
 License: LGPL-3 or GPL-2
 
 Files: src/remoteobjects/doc/src/cmake-macros.qdoc
