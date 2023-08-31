@@ -26,7 +26,7 @@ License: BSD-3-clause
 Files: tests/*
        tools/*
 Copyright: 2015-2019 Ford Motor Company
-           2016-2017 The Qt Company Ltd.
+           2016-2021 The Qt Company Ltd.
 License: GPL-3 with Qt-1.0 exception
 
 Files: tools/repc/moc_copy/moc.cpp
